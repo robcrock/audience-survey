@@ -16,6 +16,10 @@ input {
   outline: none;
 }
 
+.displayErrors input:invalid {
+  border-color: #f73772;
+}
+
 pre,
 code {
   font-family: "Roboto Mono", Monaco;
@@ -44,6 +48,7 @@ button {
 form {
   display: inline-block;
   margin-right: 50px;
+  margin-bottom: 20px;
   vertical-align: top;
 }
 

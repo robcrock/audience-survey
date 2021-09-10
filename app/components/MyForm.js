@@ -23,7 +23,7 @@ class ShakingError extends React.Component {
   }
 
   componentWillReceiveProps() {
-    // update key to rerender the component to rerun the animation
+    // update key to remount the component to rerun the animation
     this.setState({ key: ++this.state.key })
   }
 
@@ -46,7 +46,10 @@ class MyForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     if (!event.target.checkValidity()) {
-      this.setState({ invalid: true })
+      this.setState({
+        invalid: true,
+        displayErrors: true,
+      })
       return
     }
     const form = event.target
@@ -65,6 +68,7 @@ class MyForm extends React.Component {
     this.setState({
       res: stringifyFormData(data),
       invalid: false,
+      displayErrors: false,
     })
 
     // fetch('/api/form-submit-url', {
@@ -74,20 +78,25 @@ class MyForm extends React.Component {
   }
 
   render() {
-    const { res, invalid } = this.state
+    const { res, invalid, displayErrors } = this.state
     return (
       <div>
-        <form onSubmit={this.handleSubmit} noValidate>
+        <form
+          onSubmit={this.handleSubmit}
+          noValidate
+          className={displayErrors ? "displayErrors" : ""}
+        >
           <label htmlFor="username">Username:</label>
           <input
             id="username"
             name="username"
             type="text"
             data-parse="uppercase"
+            required
           />
 
           <label htmlFor="email">Email:</label>
-          <input id="email" name="email" type="email" />
+          <input id="email" name="email" type="email" required />
 
           <label htmlFor="birthdate">Birthdate:</label>
           <input
