@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { webpack } = require("webpack")
 
 module.exports = {
-  entry: "./app/index.js",
+  entry: "./client/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "index_bundle.js",
@@ -19,7 +19,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "app/index.html",
+      template: "client/index.html",
     }),
   ],
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
