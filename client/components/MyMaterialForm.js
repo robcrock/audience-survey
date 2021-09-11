@@ -28,30 +28,29 @@ function MyMaterialForm() {
     })
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log(formValues)
+  const handleSubmit = (evt) => {
+    evt.preventDefault()
+    console.log(evt)
+
+    let data = { formValues }
+    data.formValues.internal_or_external = data.formValues.internalOrExternal
+    delete data.formValues.internalOrExternal
+    data.formValues.passive_or_active = data.formValues.passiveOrActive
+    delete data.formValues.passiveOrActive
+
+    console.log(data)
+
+    fetch("http://localhost:5000/surveys", {
+      method: "POST",
+      body: JSON.stringify(data.formValues),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => console.log("Success:", JSON.stringify(response)))
+      .catch((error) => console.error("Error:", error))
   }
-
-  // const handleSubmit = (evt) => {
-  //   evt.preventDefault()
-  //   console.log(evt)
-
-  //   let data = { formInput }
-
-  //   console.log(data)
-
-  // fetch("https://pointy-gauge.glitch.me/api/form", {
-  //   method: "POST",
-  //   body: JSON.stringify(data),
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // })
-  //   .then((response) => response.json())
-  //   .then((response) => console.log("Success:", JSON.stringify(response)))
-  //   .catch((error) => console.error("Error:", error))
-  // }
 
   return (
     <form component="fieldset" onSubmit={handleSubmit}>
