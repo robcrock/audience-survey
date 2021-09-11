@@ -1,51 +1,68 @@
 import React from "react"
-import FormControl from "@material-ui/core/FormControl"
-import FormLabel from "@material-ui/core/FormLabel"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
-import RadioGroup from "@material-ui/core/RadioGroup"
-import Radio from "@material-ui/core/Radio"
+import {
+  FormLabel,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+  Button,
+} from "@material-ui/core"
+
+const defaultValues = {
+  seniority: "",
+  division: "",
+  internalOrExternal: "",
+  familiarity: "",
+  preference: "",
+  time: "",
+  passiveOrActive: "",
+}
 
 function MyMaterialForm() {
-  const [seniority, setSeniority] = React.useState("")
-  const [division, setDivision] = React.useState("")
-  const [internalOrExternal, setinternalOrExternal] = React.useState("")
-  const [familiarity, setFamiliarity] = React.useState("")
-  const [preference, setPreference] = React.useState("")
-  const [time, setTime] = React.useState("")
-  const [passiveOrActive, setpassiveOrActive] = React.useState("")
+  const [formValues, setFormValues] = React.useState(defaultValues)
 
-  const handleSeniority = (event) => {
-    setSeniority(event.target.value)
+  const handleRadioChange = (e) => {
+    const { name, value } = e.target
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    })
   }
-  const handleDivision = (event) => {
-    setDivision(event.target.value)
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(formValues)
   }
-  const handleInternalOrExternal = (event) => {
-    setinternalOrExternal(event.target.value)
-  }
-  const handleFamiliarity = (event) => {
-    setFamiliarity(event.target.value)
-  }
-  const handlePreference = (event) => {
-    setPreference(event.target.value)
-  }
-  const handleTime = (event) => {
-    setTime(event.target.value)
-  }
-  const handlePassiveOrActive = (event) => {
-    setpassiveOrActive(event.target.value)
-  }
+
+  // const handleSubmit = (evt) => {
+  //   evt.preventDefault()
+  //   console.log(evt)
+
+  //   let data = { formInput }
+
+  //   console.log(data)
+
+  // fetch("https://pointy-gauge.glitch.me/api/form", {
+  //   method: "POST",
+  //   body: JSON.stringify(data),
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // })
+  //   .then((response) => response.json())
+  //   .then((response) => console.log("Success:", JSON.stringify(response)))
+  //   .catch((error) => console.error("Error:", error))
+  // }
 
   return (
-    <FormControl component="fieldset">
+    <form component="fieldset" onSubmit={handleSubmit}>
       <FormLabel component="legend">
         What is the Seniority Level of this audience?
       </FormLabel>
       <RadioGroup
         aria-label="seniority"
         name="seniority"
-        value={seniority}
-        onChange={handleSeniority}
+        value={formValues.seniority}
+        onChange={handleRadioChange}
       >
         <FormControlLabel value="all" control={<Radio />} label="All" />
         <FormControlLabel value="high" control={<Radio />} label="High" />
@@ -59,8 +76,8 @@ function MyMaterialForm() {
       <RadioGroup
         aria-label="division"
         name="division"
-        value={division}
-        onChange={handleDivision}
+        value={formValues.division}
+        onChange={handleRadioChange}
       >
         <FormControlLabel
           value="marketing"
@@ -86,9 +103,9 @@ function MyMaterialForm() {
       </FormLabel>
       <RadioGroup
         aria-label="internal-or-external"
-        name="internal-or-external"
-        value={internalOrExternal}
-        onChange={handleInternalOrExternal}
+        name="internalOrExternal"
+        value={formValues.internalOrExternal}
+        onChange={handleRadioChange}
       >
         <FormControlLabel
           value="internal"
@@ -108,8 +125,8 @@ function MyMaterialForm() {
       <RadioGroup
         aria-label="familiarity"
         name="familiarity"
-        value={familiarity}
-        onChange={handleFamiliarity}
+        value={formValues.familiarity}
+        onChange={handleRadioChange}
       >
         <FormControlLabel
           value="familiar"
@@ -128,9 +145,9 @@ function MyMaterialForm() {
       </FormLabel>
       <RadioGroup
         aria-label="interactive-or-static"
-        name="interactive-or-static"
-        value={preference}
-        onChange={handlePreference}
+        name="preference"
+        value={formValues.preference}
+        onChange={handleRadioChange}
       >
         <FormControlLabel
           value="interactive"
@@ -146,8 +163,8 @@ function MyMaterialForm() {
       <RadioGroup
         aria-label="time"
         name="time"
-        value={time}
-        onChange={handleTime}
+        value={formValues.time}
+        onChange={handleRadioChange}
       >
         <FormControlLabel
           value="quick-glance"
@@ -168,9 +185,9 @@ function MyMaterialForm() {
       </FormLabel>
       <RadioGroup
         aria-label=""
-        name="passive-or-active"
-        value={passiveOrActive}
-        onChange={handlePassiveOrActive}
+        name="passiveOrActive"
+        value={formValues.passiveOrActive}
+        onChange={handleRadioChange}
       >
         <FormControlLabel
           value="passive-monitoring"
@@ -183,8 +200,12 @@ function MyMaterialForm() {
           label="Active Decision Making"
         />
         <FormControlLabel value="both" control={<Radio />} label="Both" />
+
+        <Button type="submit" variant="contained" color="primary">
+          Subscribe
+        </Button>
       </RadioGroup>
-    </FormControl>
+    </form>
   )
 }
 
