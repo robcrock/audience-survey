@@ -6,15 +6,34 @@ import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from "@material-ui/core/Radio"
 
 function MyMaterialForm() {
-  const handleChange = (event) => {
-    event.preventDefault()
-    if (!event.target.checkValidity()) {
-      this.setState({
-        invalid: true,
-        displayErrors: true,
-      })
-      return
-    }
+  const [seniority, setSeniority] = React.useState("")
+  const [division, setDivision] = React.useState("")
+  const [internalOrExternal, setinternalOrExternal] = React.useState("")
+  const [familiarity, setFamiliarity] = React.useState("")
+  const [preference, setPreference] = React.useState("")
+  const [time, setTime] = React.useState("")
+  const [passiveOrActive, setpassiveOrActive] = React.useState("")
+
+  const handleSeniority = (event) => {
+    setSeniority(event.target.value)
+  }
+  const handleDivision = (event) => {
+    setDivision(event.target.value)
+  }
+  const handleInternalOrExternal = (event) => {
+    setinternalOrExternal(event.target.value)
+  }
+  const handleFamiliarity = (event) => {
+    setFamiliarity(event.target.value)
+  }
+  const handlePreference = (event) => {
+    setPreference(event.target.value)
+  }
+  const handleTime = (event) => {
+    setTime(event.target.value)
+  }
+  const handlePassiveOrActive = (event) => {
+    setpassiveOrActive(event.target.value)
   }
 
   return (
@@ -23,24 +42,25 @@ function MyMaterialForm() {
         What is the Seniority Level of this audience?
       </FormLabel>
       <RadioGroup
-        aria-label="senoriority"
-        name="senority"
-        value=""
-        onChange={handleChange}
+        aria-label="seniority"
+        name="seniority"
+        value={seniority}
+        onChange={handleSeniority}
       >
         <FormControlLabel value="all" control={<Radio />} label="All" />
         <FormControlLabel value="high" control={<Radio />} label="High" />
         <FormControlLabel value="medium" control={<Radio />} label="Medium" />
         <FormControlLabel value="low" control={<Radio />} label="Low" />
       </RadioGroup>
+
       <FormLabel component="legend">
         If this audience works in a certian Division, what is that Division?
       </FormLabel>
       <RadioGroup
         aria-label="division"
         name="division"
-        value=""
-        onChange={handleChange}
+        value={division}
+        onChange={handleDivision}
       >
         <FormControlLabel
           value="marketing"
@@ -60,14 +80,15 @@ function MyMaterialForm() {
           label="Operations"
         />
       </RadioGroup>
+
       <FormLabel component="legend">
         Is the audience Internal or External
       </FormLabel>
       <RadioGroup
         aria-label="internal-or-external"
         name="internal-or-external"
-        value=""
-        onChange={handleChange}
+        value={internalOrExternal}
+        onChange={handleInternalOrExternal}
       >
         <FormControlLabel
           value="internal"
@@ -80,14 +101,15 @@ function MyMaterialForm() {
           label="External"
         />
       </RadioGroup>
+
       <FormLabel component="legend">
         How familiar is the audience with the subject of this visualization?
       </FormLabel>
       <RadioGroup
         aria-label="familiarity"
         name="familiarity"
-        value=""
-        onChange={handleChange}
+        value={familiarity}
+        onChange={handleFamiliarity}
       >
         <FormControlLabel
           value="familiar"
@@ -100,14 +122,15 @@ function MyMaterialForm() {
           label="Unfamiliar"
         />
       </RadioGroup>
+
       <FormLabel component="legend">
         Does the audience expect the dashboard to be Interactive or Static?
       </FormLabel>
       <RadioGroup
         aria-label="interactive-or-static"
         name="interactive-or-static"
-        value=""
-        onChange={handleChange}
+        value={preference}
+        onChange={handlePreference}
       >
         <FormControlLabel
           value="interactive"
@@ -116,14 +139,15 @@ function MyMaterialForm() {
         />
         <FormControlLabel value="static" control={<Radio />} label="Static" />
       </RadioGroup>
+
       <FormLabel component="legend">
         How much time does this audience have to spend with the dashboard?
       </FormLabel>
       <RadioGroup
         aria-label="time"
         name="time"
-        value=""
-        onChange={handleChange}
+        value={time}
+        onChange={handleTime}
       >
         <FormControlLabel
           value="quick-glance"
@@ -137,6 +161,7 @@ function MyMaterialForm() {
         />
         <FormControlLabel value="both" control={<Radio />} label="Both" />
       </RadioGroup>
+
       <FormLabel component="legend">
         Will the audience be using this dashboard for Passive Monitoring or
         Active Decision Making?
@@ -144,8 +169,8 @@ function MyMaterialForm() {
       <RadioGroup
         aria-label=""
         name="passive-or-active"
-        value="passive-or-active"
-        onChange={handleChange}
+        value={passiveOrActive}
+        onChange={handlePassiveOrActive}
       >
         <FormControlLabel
           value="passive-monitoring"
