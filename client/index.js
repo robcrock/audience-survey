@@ -1,5 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import IconButton from "@material-ui/core/IconButton"
+import AddCircleRoundedIcon from "@material-ui/icons/AddCircleRounded"
 import "./index.scss"
 
 // Components
@@ -12,6 +14,9 @@ class App extends React.Component {
     return (
       <div>
         <SurveyList />
+        <IconButton aria-label="add survey">
+          <AddCircleRoundedIcon />
+        </IconButton>
       </div>
     )
   }

@@ -1,5 +1,6 @@
 const express = require("express")
 const app = express()
+const port = 5000
 const cors = require("cors")
 const pool = require("./db")
 
@@ -99,8 +100,8 @@ app.get("/surveys", async (req, res) => {
   }
 })
 
-app.listen(5000, () => {
-  console.log("Server has started on port 5000")
+app.listen(port, () => {
+  console.log(`Server has started on port ${port}`)
 })
 
 // delete a survey
