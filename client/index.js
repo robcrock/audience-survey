@@ -6,6 +6,7 @@ import AddCircleRoundedIcon from "@material-ui/icons/AddCircleRounded"
 import "./index.scss"
 
 // Components
+import Home from "./components/Home"
 import MyForm from "./components/MyForm"
 import MyMaterialForm from "./components/MyMaterialForm"
 import SurveyList from "./components/SurveyList"
@@ -17,9 +18,9 @@ class App extends React.Component {
       <Router>
         <div>
           <Switch>
+            <Route exact path="/add-survey" component={MyMaterialForm}></Route>
             <Route exact path="/" component={SurveyList}></Route>
             <Route path="/:id" component={SurveyDetail}></Route>
-            <Route path="/add-survey" component={MyMaterialForm}></Route>
           </Switch>
         </div>
       </Router>

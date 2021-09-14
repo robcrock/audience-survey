@@ -1,4 +1,5 @@
 import React from "react"
+import { withRouter } from "react-router-dom"
 import {
   FormLabel,
   FormControlLabel,
@@ -17,7 +18,7 @@ const defaultValues = {
   passiveOrActive: "",
 }
 
-function MyMaterialForm() {
+function MyMaterialForm(props) {
   const [formValues, setFormValues] = React.useState(defaultValues)
 
   const handleRadioChange = (e) => {
@@ -50,6 +51,8 @@ function MyMaterialForm() {
       .then((response) => response.json())
       .then((response) => console.log("Success:", JSON.stringify(response)))
       .catch((error) => console.error("Error:", error))
+
+    props.history.push("/")
   }
 
   return (
@@ -208,4 +211,4 @@ function MyMaterialForm() {
   )
 }
 
-export default MyMaterialForm
+export default withRouter(MyMaterialForm)
