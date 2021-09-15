@@ -32,6 +32,7 @@ const SurveyDetail = ({ match }) => {
     <>
       <h1>Survey</h1>
       <ul>
+        <li>Name: {survey.name}</li>
         <li>Division: {survey.division}</li>
         <li>Familiarity: {survey.familiarity}</li>
         <li>Internal or External: {survey.internal_or_external}</li>

@@ -14,6 +14,7 @@ app.use(express.json()) // gets us access to req.body
 app.post("/surveys", async (req, res) => {
   try {
     const {
+      name,
       division,
       familiarity,
       internal_or_external,
@@ -24,8 +25,9 @@ app.post("/surveys", async (req, res) => {
     } = req.body
 
     const newSurvey = await pool.query(
-      "INSERT INTO audience_survey (division, familiarity, internal_or_external, passive_or_active, preference, seniority, time) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      "INSERT INTO audience_survey (name, division, familiarity, internal_or_external, passive_or_active, preference, seniority, time) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
       [
+        name,
         division,
         familiarity,
         internal_or_external,
@@ -47,6 +49,7 @@ app.put("/surveys/:id", async (req, res) => {
   try {
     const { id } = req.params
     const {
+      name,
       division,
       familiarity,
       internal_or_external,
@@ -57,8 +60,9 @@ app.put("/surveys/:id", async (req, res) => {
     } = req.body
 
     const updatedSurvey = await pool.query(
-      "UPDATE audience_survey SET division = $1, familiarity = $2, internal_or_external = $3, passive_or_active = $4, preference = $5, seniority = $6, time = $7 WHERE survey_id = $8",
+      "UPDATE audience_survey SET name = $1, division = $2, familiarity = $3, internal_or_external = $4, passive_or_active = $5, preference = $6, seniority = $7, time = $8 WHERE survey_id = $9",
       [
+        name,
         division,
         familiarity,
         internal_or_external,

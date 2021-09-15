@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { withRouter } from "react-router-dom"
 import {
   FormLabel,
@@ -6,7 +6,11 @@ import {
   RadioGroup,
   Radio,
   Button,
+  TextField,
 } from "@material-ui/core"
+
+// Styles
+import useStyles from "../styles"
 
 const defaultValues = {
   seniority: "",
@@ -18,8 +22,10 @@ const defaultValues = {
   passiveOrActive: "",
 }
 
-function MyMaterialForm(props) {
+const Form = (props) => {
+  const classes = useStyles()
   const [formValues, setFormValues] = React.useState(defaultValues)
+  const [textValue, setTextValue] = useState("")
 
   const handleRadioChange = (e) => {
     const { name, value } = e.target
@@ -27,6 +33,10 @@ function MyMaterialForm(props) {
       ...formValues,
       [name]: value,
     })
+  }
+
+  const handleTextChange = (e) => {
+    setTextValue(e.target.value)
   }
 
   const handleSubmit = (evt) => {
@@ -39,6 +49,8 @@ function MyMaterialForm(props) {
     data.formValues.passive_or_active = data.formValues.passiveOrActive
     delete data.formValues.passiveOrActive
 
+    // Add the audienceName to the other data
+    data.formValues.name = textValue
     console.log(data)
 
     fetch("http://localhost:5000/surveys", {
@@ -56,7 +68,20 @@ function MyMaterialForm(props) {
   }
 
   return (
-    <form component="fieldset" onSubmit={handleSubmit}>
+    <form
+      className={classes.root}
+      noValidate
+      autoComplete="off"
+      component="fieldset"
+      onSubmit={handleSubmit}
+    >
+      <FormLabel component="legend">Give you Audience a name</FormLabel>
+      <TextField
+        id="standard-basic"
+        label="Audience Name"
+        value={textValue}
+        onChange={handleTextChange}
+      />
       <FormLabel component="legend">
         What is the Seniority Level of this audience?
       </FormLabel>
@@ -211,4 +236,4 @@ function MyMaterialForm(props) {
   )
 }
 
-export default withRouter(MyMaterialForm)
+export default withRouter(Form)
