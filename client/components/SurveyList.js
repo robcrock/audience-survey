@@ -1,14 +1,32 @@
 import React, { useState, useEffect } from "react"
-import IconButton from "@material-ui/core/IconButton"
-import AddCircleRoundedIcon from "@material-ui/icons/AddCircleRounded"
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever"
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
+import {
+  Typography,
+  AppBar,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  CssBaseline,
+  Grid,
+  Toolbar,
+  Container,
+  IconButton,
+  Button,
+} from "@material-ui/core"
+import AddCircleRoundedIcon from "@material-ui/icons/AddCircleRounded"
+import DeleteIcon from "@material-ui/icons/Delete"
 
 // Components
 import SurveyDetail from "./SurveyDetail"
-import MyMaterialForm from "./MyMaterialForm"
+import Form from "./Form"
+
+// Styles
+import useStyles from "../styles"
 
 const SurveyList = () => {
+  const classes = useStyles()
+
   const [surveys, setSurveys] = useState([])
 
   const getSurveys = async () => {
@@ -39,35 +57,44 @@ const SurveyList = () => {
 
   return (
     <>
-      <table className="table mt-5">
-        <thead>
-          <tr>
-            <th>Survey ID</th>
-          </tr>
-        </thead>
-        <tbody>
+      <Container className={classes.cardGrid} maxWidth="md">
+        <Grid container spacing={4}>
           {surveys.map((survey) => (
-            <tr key={survey.survey_id}>
-              <td>
-                <Link to={`/${survey.survey_id}`}>{survey.survey_id}</Link>
-              </td>
-              <td>
-                <IconButton
-                  aria-label="delete survey"
-                  onClick={() => handleDelete(survey.survey_id)}
-                >
-                  <DeleteForeverIcon />
-                </IconButton>
-              </td>
-            </tr>
+            <Grid item key={survey.survey_id} xs={12} sm={6} md={4}>
+              <Card className={classes.card}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image="https://source.unsplash.com/random"
+                  title="Image title"
+                />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h5">
+                    Heading
+                  </Typography>
+                  <Typography>
+                    This is a survey card that will expose summary level details
+                    of your Survey.
+                  </Typography>
+                  <CardActions>
+                    <Link to={`/${survey.survey_id}`}>
+                      <Button size="small" color="primary">
+                        View
+                      </Button>
+                    </Link>
+                    <IconButton
+                      size="small"
+                      color="primary"
+                      onClick={() => handleDelete(survey.survey_id)}
+                    >
+                      <DeleteIcon /> Delete
+                    </IconButton>
+                  </CardActions>
+                </CardContent>
+              </Card>
+            </Grid>
           ))}
-        </tbody>
-      </table>
-      <IconButton aria-label="add survey">
-        <Link to="/add-survey">
-          <AddCircleRoundedIcon />
-        </Link>
-      </IconButton>
+        </Grid>
+      </Container>
     </>
   )
 }

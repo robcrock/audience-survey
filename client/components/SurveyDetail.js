@@ -4,7 +4,7 @@ import AddCircleRoundedIcon from "@material-ui/icons/AddCircleRounded"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 
 // Components
-import MyMaterialForm from "./MyMaterialForm"
+import Form from "./Form"
 
 const SurveyDetail = ({ match }) => {
   const [survey, setSurvey] = useState([])
