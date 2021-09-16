@@ -36,6 +36,13 @@ const useStyles = makeStyles((theme) => ({
       width: "25ch",
     },
   },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  link: {
+    color: "white",
+    textDecoration: "none",
+  },
 }))
 
 export default useStyles
