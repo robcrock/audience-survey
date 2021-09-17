@@ -23,6 +23,7 @@ import {
 import AddCircleRoundedIcon from "@material-ui/icons/AddCircleRounded"
 import DeleteIcon from "@material-ui/icons/Delete"
 import VisibilityIcon from "@material-ui/icons/Visibility"
+import CreateIcon from "@material-ui/icons/Create"
 
 // Components
 import SurveyDetail from "./SurveyDetail"
@@ -82,6 +83,11 @@ const SurveyList = () => {
                     </ListItemAvatar>
                     <ListItemText primary={survey.name} />
                     <ListItemSecondaryAction>
+                      <IconButton edge="end" aria-label="edit">
+                        <Link to={`/edit/${survey.survey_id}`}>
+                          <CreateIcon />
+                        </Link>
+                      </IconButton>
                       <IconButton
                         edge="end"
                         aria-label="delete"
