@@ -20,6 +20,7 @@ import useStyles from "../styles"
 
 const EditSurvey = (props) => {
   const defaultValues = {
+    name: "",
     seniority: "",
     division: "",
     internal_or_external: "",
@@ -43,24 +44,28 @@ const EditSurvey = (props) => {
   }
 
   const handleTextChange = (e) => {
-    setTextValue(e.target.value)
+    setSurvey({
+      ...survey,
+      name: e.target.value,
+    })
   }
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    let data = { formValues }
-    data.formValues.internal_or_external = data.formValues.internalOrExternal
-    delete data.formValues.internalOrExternal
-    data.formValues.passive_or_active = data.formValues.passiveOrActive
-    delete data.formValues.passiveOrActive
+    let data = { survey }
+    data.survey.internal_or_external = data.survey.passive_or_active
+    data.survey.passive_or_active = data.survey.passive_or_active
 
     // Add the audienceName to the other data
-    data.formValues.name = textValue
+    data.survey.name = survey.name
 
-    fetch("http://localhost:5000/surveys", {
-      method: "POST",
-      body: JSON.stringify(data.formValues),
+    console.log(`Data from PUT ${data.survey}`)
+    console.log(`Match from handleSubmit ${props.match.params.id}`)
+
+    fetch(`http://localhost:5000/surveys/${props.match.params.id}`, {
+      method: "PUT",
+      body: JSON.stringify(data.survey),
       headers: {
         "Content-Type": "application/json",
       },
@@ -190,7 +195,7 @@ const EditSurvey = (props) => {
               </FormLabel>
               <RadioGroup
                 aria-label="internal-or-external"
-                name="internalOrExternal"
+                name="internal_or_external"
                 value={survey.internal_or_external}
                 onChange={handleRadioChange}
               >
@@ -287,7 +292,7 @@ const EditSurvey = (props) => {
               </FormLabel>
               <RadioGroup
                 aria-label=""
-                name="passiveOrActive"
+                name="passive_or_active"
                 value={survey.passive_or_active}
                 onChange={handleRadioChange}
               >
