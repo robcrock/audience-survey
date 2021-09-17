@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles"
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    maxWidth: "36ch",
     backgroundColor: theme.palette.background.paper,
   },
   inline: {
@@ -37,6 +36,12 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: "50px 0",
+  },
+  form: {
+    margin: theme.spacing(4, 0, 0, 4),
+  },
+  formLabel: {
+    margin: theme.spacing(4, 0, 0, 0),
   },
   root: {
     "& > *": {

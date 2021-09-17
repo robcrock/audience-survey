@@ -1,6 +1,12 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
-import { Typography, Grid, Container, Button } from "@material-ui/core"
+import {
+  Typography,
+  Grid,
+  Container,
+  Button,
+  CssBaseline,
+} from "@material-ui/core"
 
 // Styles
 import useStyles from "../styles"
@@ -16,6 +22,7 @@ const Main = () => {
 
   return (
     <>
+      <CssBaseline />
       <main>
         <div className={classes.container}>
           <Container maxWidth="sm">
