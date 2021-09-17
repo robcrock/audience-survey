@@ -5,8 +5,8 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: theme.palette.background.paper,
   },
-  inline: {
-    display: "inline",
+  btnCenter: {
+    justifyContent: "center",
   },
   container: {
     backgroundColor: theme.palette.background.paper,
@@ -42,12 +42,6 @@ const useStyles = makeStyles((theme) => ({
   },
   formLabel: {
     margin: theme.spacing(4, 0, 0, 0),
-  },
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
   },
   menuButton: {
     marginRight: theme.spacing(2),

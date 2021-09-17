@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import {
   CssBaseline,
+  Box,
   IconButton,
   Container,
   Typography,
@@ -39,9 +40,12 @@ const SurveyDetail = ({ match }) => {
     <>
       <CssBaseline />
       <Container maxWidth="md">
-        <Typography variant="h1">{survey.name}</Typography>
-
         <List className={classes.root}>
+          <Box sx={{ m: 2 }}>
+            <Typography variant="h5" align="left" color="textPrimary" paragraph>
+              {survey.name}
+            </Typography>
+          </Box>
           <ListItem>
             <ListItemText
               primary="What is the Seniority Level of this audience?"
@@ -49,8 +53,7 @@ const SurveyDetail = ({ match }) => {
                 <>
                   <Typography
                     component="span"
-                    variant="body2"
-                    className={classes.inline}
+                    variant="body1"
                     color="textPrimary"
                   >
                     {survey.seniority === ""
@@ -69,8 +72,7 @@ const SurveyDetail = ({ match }) => {
                 <>
                   <Typography
                     component="span"
-                    variant="body2"
-                    className={classes.inline}
+                    variant="body1"
                     color="textPrimary"
                   >
                     {survey.division === ""
@@ -88,8 +90,7 @@ const SurveyDetail = ({ match }) => {
                 <>
                   <Typography
                     component="span"
-                    variant="body2"
-                    className={classes.inline}
+                    variant="body1"
                     color="textPrimary"
                   >
                     {survey.internal_or_external === ""
@@ -107,8 +108,7 @@ const SurveyDetail = ({ match }) => {
                 <>
                   <Typography
                     component="span"
-                    variant="body2"
-                    className={classes.inline}
+                    variant="body1"
                     color="textPrimary"
                   >
                     {survey.familiarity === ""
@@ -126,8 +126,7 @@ const SurveyDetail = ({ match }) => {
                 <>
                   <Typography
                     component="span"
-                    variant="body2"
-                    className={classes.inline}
+                    variant="body1"
                     color="textPrimary"
                   >
                     {survey.preference === ""
@@ -145,8 +144,7 @@ const SurveyDetail = ({ match }) => {
                 <>
                   <Typography
                     component="span"
-                    variant="body2"
-                    className={classes.inline}
+                    variant="body1"
                     color="textPrimary"
                   >
                     {survey.time === "" ? "No answer was given." : survey.time}
@@ -163,8 +161,7 @@ const SurveyDetail = ({ match }) => {
                 <>
                   <Typography
                     component="span"
-                    variant="body2"
-                    className={classes.inline}
+                    variant="body1"
                     color="textPrimary"
                   >
                     {survey.passive_or_active === ""
@@ -182,8 +179,7 @@ const SurveyDetail = ({ match }) => {
                 <>
                   <Typography
                     component="span"
-                    variant="body2"
-                    className={classes.inline}
+                    variant="body1"
                     color="textPrimary"
                   >
                     {survey.seniority === ""
