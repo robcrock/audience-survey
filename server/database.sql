@@ -1,3 +1,4 @@
+// Run the create database and table to set up your postgres
 CREATE DATABASE survey;
 
 CREATE TABLE audience_survey(
@@ -12,6 +13,7 @@ CREATE TABLE audience_survey(
   time VARCHAR(255)
 )
 
+// The queries below are just examples
 INSERT INTO audience_survey(
   name,
   division,
